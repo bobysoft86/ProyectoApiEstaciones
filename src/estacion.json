@@ -1,0 +1,15 @@
+
+
+
+    {
+        "estacion": "faker.address.city()",
+        "estado": "Cerrada",
+        "km_abiertos": 100,
+        "nieveEnCm":300,
+        "meteo": {
+          "temperatura":10,
+          "viento":  0, 
+          "condiciones": "Despejado",
+          "pronostico": "adfafsdg"
+        }
+      }
