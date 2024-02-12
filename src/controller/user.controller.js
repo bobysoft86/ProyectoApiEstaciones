@@ -2,6 +2,7 @@ const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const HTTPSTATUSCODE = require("../../utils/httpStatusCode");
+const { request } = require("express");
 
 const createUser = async (request, response, next) => {
   try {
@@ -76,6 +77,21 @@ const logout = (req, res, next) => {
     return next(error);
   }
 };
+const getUser = async (request, response, next) => {
+  try {
+    const id = request.params.id;
+    const user = await User.findById(id);
+    response.status(200).json({
+        status: 200,
+        message: HTTPSTATUSCODE[200],
+        data: user
+    });
+
+} catch (error) {
+    next(error)
+}
+}
+
 const getUsers = async (request, response, next) => {
     try {
         const users = await User.find();
@@ -90,6 +106,7 @@ const getUsers = async (request, response, next) => {
     }
 }
 module.exports = {
+  getUser,
     getUsers,
   createUser,
   authenticate,

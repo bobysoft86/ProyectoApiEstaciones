@@ -19,10 +19,12 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+
     next();
 });
 app.use(cors({
-    origin: ["*" ,'http://127.0.0.1:5500'],
+    origin: ["*",'http://localhost:4200','http://127.0.0.1:5500'],
     credentials: true,
 }));
 
@@ -35,17 +37,15 @@ app.set("secretKey", "nodeRestApi");
 
 /* ROUTES */
 const estacionesRouter = require('./src/routes/estaciones.routes');
-const pirineosRouter = require('./src/routes/pirineos.routes');
-
 const userRouter = require('./src/routes/user.routes');
 app.use('/api/estaciones', estacionesRouter);
 app.use('/api/user', userRouter);
-app.use('/api/pirineos', pirineosRouter);
+
 
 app.get('/', (request, response) => {
     response.status(200).json({
         message: 'Welcome to server',
-        app: 'estaciones App'
+        app: 'maleteo App'
     });
 });
  

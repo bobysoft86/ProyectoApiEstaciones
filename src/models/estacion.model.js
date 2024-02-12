@@ -1,45 +1,14 @@
 const mongoose = require("mongoose");
 
 const estacionScheme = new mongoose.Schema({
-  estacion: {
-    type: String,
-    required: true,
-  },
-  estado: {
-    type: String,
-    enum: ['Abierta', 'Cerrada'],
-    required: true,
-  },
-  km_abiertos: {
-    type: Number,
-    required: true,
-  },
-  km_estacion: {
-    type: Number,
-    required: true,
-  },
-  nieveEnCm: {
-    type: Number,
-    required: true,
-  },
-  meteo: {
-    temperatura: {
-      type: Number,
-      required: true,
-    },
-    viento: {
-      type: Number,
-      required: true,
-    },
-    condiciones: {
-      type: String,
-      required: true,
-    },
-    pronostico: {
-      type: String,
-      required: true,
-    },
-  },
+  
+  name: { type: String, unique: true, trim: true, required: true },
+  password: { type: String, trim: true, required: true },
+  img: { type: String, trim: true, required: true },
+  location:{
+      latitude:{type:Number},
+      longitude:{type:Number}
+      },
 });
 
 const Estacion = mongoose.model("Estacion", estacionScheme);

@@ -1,12 +1,11 @@
 {
-    "name": "Jhon capri"
-    "password": "123456"
+
+        "name": "pepe",
+        "password": "astufaifos2",
+        "location":{
+            "latitude":41.3841,
+            "longitude":2.1734
+            }
+    
 }
 
-{
-    estacion:
-    estado:
-    km-abiertos:
-    nieveEnCm:
-    Meteo
-}

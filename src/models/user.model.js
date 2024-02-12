@@ -6,6 +6,10 @@ const userSchema = new mongoose.Schema(
     {
         name: { type: String, unique: true, trim: true, required: true },
         password: { type: String, trim: true, required: true },
+        location:{
+            latitude:{type:Number},
+            longitude:{type:Number}
+            },
     },
 );
 

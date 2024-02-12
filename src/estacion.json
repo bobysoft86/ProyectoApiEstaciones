@@ -1,15 +1,47 @@
-
-
-
-    {
-        "estacion": "faker.address.city()",
-        "estado": "Cerrada",
-        "km_abiertos": 100,
-        "nieveEnCm":300,
-        "meteo": {
-          "temperatura":10,
-          "viento":  0, 
-          "condiciones": "Despejado",
-          "pronostico": "adfafsdg"
-        }
-      }
+[
+  {
+    "name": "Estación 1",
+    "password": "contraseña1",
+    "img": "imagen1.jpg",
+    "location": {
+      "latitude": 41.3879,
+      "longitude": 2.1699
+    }
+  },
+  {
+    "name": "Estación 2",
+    "password": "contraseña2",
+    "img": "imagen2.jpg",
+    "location": {
+      "latitude": 41.3947,
+      "longitude": 2.1494
+    }
+  },
+  {
+    "name": "Estación 3",
+    "password": "contraseña3",
+    "img": "imagen3.jpg",
+    "location": {
+      "latitude": 41.3826,
+      "longitude": 2.1775
+    }
+  },
+  {
+    "name": "Estación 4",
+    "password": "contraseña4",
+    "img": "imagen4.jpg",
+    "location": {
+      "latitude": 41.3775,
+      "longitude": 2.1408
+    }
+  },
+  {
+    "name": "Estación 5",
+    "password": "contraseña5",
+    "img": "imagen5.jpg",
+    "location": {
+      "latitude": 41.3984,
+      "longitude": 2.1620
+    }
+  }
+]
