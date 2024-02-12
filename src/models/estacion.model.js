@@ -2,9 +2,9 @@ const mongoose = require("mongoose");
 
 const estacionScheme = new mongoose.Schema({
   
-  name: { type: String, unique: true, trim: true, required: true },
-  img: { type: String, trim: true, required: true },
-  capacity:{type: Number,required:true},
+  name: { type: String, unique: true, trim: true},
+  img: { type: String, trim: true },
+  capacity:{type: Number},
   propertySpace:{ type: String},
   propertyTipe:{type:String},
   aviable:{type:Boolean},

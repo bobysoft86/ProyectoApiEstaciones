@@ -8,7 +8,11 @@ const createUser = async (request, response, next) => {
   try {
     const user = new User();
     user.name = request.body.name;
-    
+    user.img = request.body.img;
+    user.password = request.body.password;
+    user.email = request.body.email;
+    user.estaciones = request.body.estaciones;
+
     // Hash de la contraseña antes de guardarla en la base de datos
     const saltRounds = 10;  // Número de rondas para generar el salt
     user.password = await bcrypt.hash(request.body.password, saltRounds);
@@ -80,7 +84,7 @@ const logout = (req, res, next) => {
 const getUser = async (request, response, next) => {
   try {
     const id = request.params.id;
-    const user = await User.findById(id);
+    const user = await User.findById(id).populate("estaciones");
     response.status(200).json({
         status: 200,
         message: HTTPSTATUSCODE[200],
@@ -94,7 +98,7 @@ const getUser = async (request, response, next) => {
 
 const getUsers = async (request, response, next) => {
     try {
-        const users = await User.find();
+        const users = await User.find().populate("estaciones");
         response.status(200).json({
             status: 200,
             message: HTTPSTATUSCODE[200],
