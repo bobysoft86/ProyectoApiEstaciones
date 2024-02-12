@@ -21,6 +21,7 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
 
+    //aqui hay un cambio para comprobar vercel
     next();
 });
 app.use(cors({
