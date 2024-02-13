@@ -36,8 +36,8 @@
             "dest": "/api/user/register/:id"  
         },
         {
-            "src": "/api/user/autenticate(.*)",
-            "dest": "/api/user/autenticate"
+            "src": "/api/user/authenticate(.*)",
+            "dest": "/api/user/authenticate"
         }
     ]
 }
