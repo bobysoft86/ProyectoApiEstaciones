@@ -7,7 +7,7 @@ const { request } = require("express");
 const createUser = async (request, response, next) => {
   try {
     const user = new User();
-    user.username = request.body.name;
+    user.userName = request.body.userName;
     user.name = request.body.name;
     user.surname = request.body.surname;
     user.password = request.body.password;
