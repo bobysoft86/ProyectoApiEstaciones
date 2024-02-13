@@ -42,6 +42,22 @@ const createUser = async (request, response, next) => {
   }
 };
 
+const addstation = async (req, res) => {
+  try {
+    console.log("soy la req->",req.body);
+    const id = req.params.id;
+    const body = req.body;
+     const user = await User.findByIdAndUpdate(id, body, { new: true });
+    if (!user){
+      res.status(403).json({ message: `ID selected doesn't exists` })
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).json({ message: `update estacion  fail` });
+  }
+};
+
 const authenticate = async (req, res, next) => {
   try {
     const userInfo = await User.findOne({ name: req.body.name });
@@ -99,6 +115,8 @@ const getUser = async (request, response, next) => {
 }
 }
 
+
+
 const getUsers = async (request, response, next) => {
     try {
         const users = await User.find().populate("estaciones");
@@ -118,4 +136,5 @@ module.exports = {
   createUser,
   authenticate,
   logout,
+  addstation,
 };

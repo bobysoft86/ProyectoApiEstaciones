@@ -30,6 +30,12 @@
         {
             "src": "/api/estaciones/:id(.*)",
             "dest": "/api/estaciones/:id"  
+        },
+        {
+            "src": "/api/user/register/:id(.*)",
+            "dest": "/api/user/register/:id"  
         }
+        
+        
     ]
 }
