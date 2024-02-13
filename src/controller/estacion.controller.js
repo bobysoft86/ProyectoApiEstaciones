@@ -26,7 +26,9 @@ const createEstacion = async (req, res) => {
   const estacion = new Estacion(req.body);
   try {
     await estacion.save();
-    res.status(201).json({ message: "la pelicula fue creada con exito", estacion: estacion });
+    console.log(estacion._id);
+    
+    res.status(201).json({ message: "la estacion fue creada con exito", estacion: estacion });
   } catch (error) {
     console.log(error.message);
     res.status(400).json({ message: `bad request` });
