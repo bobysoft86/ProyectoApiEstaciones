@@ -26,6 +26,10 @@
         {
             "src": "/api/user/register(.*)",
             "dest": "/api/user/register"  
+        },
+        {
+            "src": "/api/estaciones/:id(.*)",
+            "dest": "/api/estaciones/:id"  
         }
     ]
 }
