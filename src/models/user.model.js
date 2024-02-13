@@ -3,9 +3,11 @@ const bcrypt = require("bcrypt");
 const salt = 10; // complejidad del encriptado
 
 const userSchema = new mongoose.Schema({
-  name: { type: String, unique: true, trim: true, required: true },
+  userName:{type: String, unique: true, trim: true, required: true},
+  name: { type: String,  trim: true, required: true },
+  surname: { type: String,  trim: true, required: true },
   password: { type: String, trim: true, required: true },
-  img: { type: String, required: true },
+  img: { type: String},
   email:{type:String,required:true},
   estaciones: [{ type: mongoose.Schema.Types.ObjectId, ref: "Estacion" }],
 });
