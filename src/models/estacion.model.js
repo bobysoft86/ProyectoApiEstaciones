@@ -8,10 +8,8 @@ const estacionScheme = new mongoose.Schema({
   propertySpace:{ type: String},
   propertyTipe:{type:String},
   aviable:{type:Boolean},
-  location:{
-      latitude:{type:Number},
-      longitude:{type:Number}
-      },
+  latitude:{type:Number},
+  longitude:{type:Number}
 });
 
 const Estacion = mongoose.model("Estacion", estacionScheme);

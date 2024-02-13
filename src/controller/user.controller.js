@@ -6,15 +6,8 @@ const { request } = require("express");
 
 const createUser = async (request, response, next) => {
   try {
-    const user = new User();
-    user.userName = request.body.userName;
-    user.name = request.body.name;
-    user.surname = request.body.surname;
-    user.password = request.body.password;
-    user.img = request.body.img;
-    user.email = request.body.email;
-    user.estaciones = request.body.estaciones;
-
+    const user =  new User(request.body);
+   
 
     // Hash de la contraseña antes de guardarla en la base de datos
     const saltRounds = 10;  // Número de rondas para generar el salt
