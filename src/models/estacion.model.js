@@ -9,7 +9,9 @@ const estacionScheme = new mongoose.Schema({
   propertyTipe:{type:String},
   aviable:{type:Boolean},
   latitude:{type:Number},
-  longitude:{type:Number}
+  longitude:{type:Number},
+  bookings:[{type: String}]
+
 });
 
 const Estacion = mongoose.model("Estacion", estacionScheme);

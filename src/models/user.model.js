@@ -10,7 +10,6 @@ const userSchema = new mongoose.Schema({
   img: { type: String},
   email:{type:String,required:true},
   estaciones: [{ type: mongoose.Schema.Types.ObjectId, ref: "Estacion" }],
-  bookings:[{type: String}],
   chats:[{type: String}]
 });
 

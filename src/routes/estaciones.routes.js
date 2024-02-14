@@ -14,7 +14,7 @@ const { isAuth } = require("../middlewares/auth.middleware");
 estacionRouter.get('/',getAllEstacions);
 estacionRouter.get('/:id',getEstacion);
 estacionRouter.post('/', createEstacion);
-estacionRouter.patch('/:id',[isAuth], updateEstacion);
+estacionRouter.patch('/:id', updateEstacion);
 estacionRouter.delete('/:id',[isAuth], deleteEstacion);
 
 module.exports = estacionRouter;
