@@ -42,7 +42,7 @@ const updateEstacion = async (req, res) => {
     const id = req.params.id;
     const body = req.body;
     console.log("soy la req->",req.body);
-    const estacion = await estacion.findByIdAndUpdate(id, body, { new: true });
+    const estacion = await Estacion.findByIdAndUpdate(id, body, { new: true });
     if (!estacion){
       res.status(403).json({ message: `ID selected doesn't exists` })
     }
