@@ -7,18 +7,37 @@ const connectMongo = require('./utils/db');
 const logger =require('morgan');
 const cors = require('cors');
 
+const Pusher = require("pusher");
+
+
+
+
+
+const pusher = new Pusher({
+    appId: "1757074",
+    key: "9e5227b9c4e79c8891ed",
+    secret: "8fc4954b05c0b741e987",
+    cluster: "eu",
+    useTLS: true
+});
+
+pusher.trigger("my-channel", "my-event", {
+    message: "hello world"
+});
 const app = express();
 const mongoSanitize = require('express-mongo-sanitize');
- 
- 
+
+
 app.use(mongoSanitize());
+
+
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.header('Access-Control-Allow-Credentials', true);
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
-
+    
     //aqui hay un cambio para comprobar vercel
     next();
 });
@@ -31,7 +50,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(logger("dev"));
 app.set("secretKey", "nodeRestApi");
- connectMongo();
+connectMongo();
 
 
 /* ROUTES */
@@ -40,6 +59,14 @@ const userRouter = require('./src/routes/user.routes');
 app.use('/api/estaciones', estacionesRouter);
 app.use('/api/user', userRouter);
 
+app.post('/api/messages', async (req, res) => {
+    await pusher.trigger("chat", "message", {
+        username: req.body.username,
+        message: req.body.message
+    });
+
+    res.json([]);
+})
 
 app.get('/', (request, response) => {
     response.status(200).json({
