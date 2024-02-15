@@ -38,6 +38,10 @@
         {
             "src": "/api/user/authenticate(.*)",
             "dest": "/api/user/authenticate"
+        },
+        {
+            "src": "/api/messages(.*)",
+            "dest": "/api/messages"
         }
     ]
 }
