@@ -9,5 +9,7 @@ userRouter.post("/register", createUser);
 userRouter.patch("/register/:id", addstation);
 userRouter.post("/authenticate", authenticate);
 userRouter.post("/logout", logout);
+userRouter.post("/upload", );
+
 
 module.exports =  userRouter;

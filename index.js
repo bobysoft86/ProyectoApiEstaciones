@@ -21,9 +21,9 @@ const pusher = new Pusher({
     useTLS: true
 });
 
-pusher.trigger("my-channel", "my-event", {
-    message: "hello world"
-});
+// pusher.trigger("my-channel", "my-event", {
+//     message: "hello world"
+// });
 const app = express();
 const mongoSanitize = require('express-mongo-sanitize');
 
@@ -59,8 +59,9 @@ const userRouter = require('./src/routes/user.routes');
 app.use('/api/estaciones', estacionesRouter);
 app.use('/api/user', userRouter);
 
-app.post('/api/messages', async (req, res) => {
-    await pusher.trigger("chat", "message", {
+app.post('/api/messages/', async (req, res) => {
+    console.log(req);
+    await pusher.trigger(req.body.chat, "message", {
         username: req.body.username,
         message: req.body.message
     });
