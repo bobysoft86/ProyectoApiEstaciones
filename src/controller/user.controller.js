@@ -7,12 +7,9 @@ const { request } = require("express");
 const createUser = async (request, response, next) => {
   try {
     const user =  new User(request.body);
-   
-
     // Hash de la contraseña antes de guardarla en la base de datos
     const saltRounds = 10;  // Número de rondas para generar el salt
     user.password = await bcrypt.hash(request.body.password, saltRounds);
-
     // Verificar si ya existe el usuario
     if (await User.findOne({ name: request.body.name })) {
       return response.status(409).json({
@@ -21,10 +18,8 @@ const createUser = async (request, response, next) => {
         data: null
       });
     }
-
     // Guardar el usuario en la base de datos
     const userDb = await user.save();
-    
     return response.status(201).json({
       status: 201,
       message: HTTPSTATUSCODE[201],
@@ -34,15 +29,12 @@ const createUser = async (request, response, next) => {
     next(error);
   }
 };
-
 const addstation = async (req, res) => {
   try {
     const id = req.params.id;
     const body = req.body;
-
     // Obtener el usuario actual
     const user = await User.findById(id);
-
     // Verificar si el usuario existe
     if (!user) {
       return res.status(403).json({ message: `ID selected doesn't exist` });
