@@ -37,19 +37,40 @@ const createUser = async (request, response, next) => {
 
 const addstation = async (req, res) => {
   try {
-    console.log("soy la req->",req.body);
     const id = req.params.id;
     const body = req.body;
-     const user = await User.findByIdAndUpdate(id, body, { new: true });
-    if (!user){
-      res.status(403).json({ message: `ID selected doesn't exists` })
+
+    // Obtener el usuario actual
+    const user = await User.findById(id);
+
+    // Verificar si el usuario existe
+    if (!user) {
+      return res.status(403).json({ message: `ID selected doesn't exist` });
     }
-    res.status(200).json(user);
+
+    // Aplicar lógica general para mantener valores existentes y agregar nuevos
+    for (const key in body) {
+      if (body.hasOwnProperty(key)) {
+        if (Array.isArray(user[key])) {
+          // Si es un array, concatenar valores
+          user[key] = user[key].concat(body[key] || []);
+        } else {
+          // Si no es un array, simplemente asignar el nuevo valor
+          user[key] = body[key];
+        }
+      }
+    }
+
+    // Guardar el usuario actualizado
+    const result = await user.save();
+
+    res.status(200).json(result);
   } catch (error) {
-    console.log(error.message);
-    res.status(404).json({ message: `update estacion  fail` });
+    console.error(error.message);
+    res.status(404).json({ message: `Update estacion fail` });
   }
 };
+
 
 const authenticate = async (req, res, next) => {
   try {
