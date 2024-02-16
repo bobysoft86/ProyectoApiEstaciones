@@ -40,14 +40,11 @@ const updateEstacion = async (req, res) => {
   try {
     const id = req.params.id;
     const updateData = req.body;
-
-    // Asegúrate de que 'bookings' sea un array, incluso si es un solo elemento
     if (updateData.bookings && !Array.isArray(updateData.bookings)) { updateData.bookings = [updateData.bookings];}
     const estacion = await Estacion.findByIdAndUpdate(id,{$addToSet: {bookings: { $each: updateData.bookings || [] }}}, { new: true });
     if (!estacion) {
       res.status(403).json({ message: `ID selected doesn't exist` });
     }
-
     res.status(200).json(estacion);
   } catch (error) {
     console.log(error.message);
