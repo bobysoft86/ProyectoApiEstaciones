@@ -6,13 +6,9 @@ const express = require('express');
 const connectMongo = require('./utils/db');
 const logger =require('morgan');
 const cors = require('cors');
+const { isAuth } = require('./src/middlewares/auth.middleware'); // Asegúrate de tener el middleware isAuth
 
 const Pusher = require("pusher");
-
-
-
-
-
 const pusher = new Pusher({
     appId: "1757074",
     key: "9e5227b9c4e79c8891ed",
@@ -21,9 +17,6 @@ const pusher = new Pusher({
     useTLS: true
 });
 
-// pusher.trigger("my-channel", "my-event", {
-//     message: "hello world"
-// });
 const app = express();
 const mongoSanitize = require('express-mongo-sanitize');
 
@@ -59,6 +52,8 @@ const userRouter = require('./src/routes/user.routes');
 app.use('/api/estaciones', estacionesRouter);
 app.use('/api/user', userRouter);
 
+
+
 app.post('/api/messages/', async (req, res) => {
     console.log(req);
     await pusher.trigger(req.body.chat, "message", {
@@ -68,7 +63,14 @@ app.post('/api/messages/', async (req, res) => {
 
     res.json([]);
 })
-
+app.post('/auth', isAuth, (req, res) => {
+  // Si se llega a este punto, significa que la autenticación fue exitosa
+  res.json({
+      status: 200,
+      message: 'Autenticación exitosa',
+      data: req.authority, // Puedes enviar información adicional del usuario si lo deseas
+  });
+});
 app.get('/', (request, response) => {
     response.status(200).json({
         message: 'Welcome to server',

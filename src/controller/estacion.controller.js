@@ -27,9 +27,9 @@ const createEstacion = async (req, res) => {
   try {
     await estacion.save();
     console.log(estacion._id);
-    
     res.status(201).json({ message: "la estacion fue creada con exito", estacion: estacion });
   } catch (error) {
+
     console.log(error.message);
     res.status(400).json({ message: `bad request` });
   }

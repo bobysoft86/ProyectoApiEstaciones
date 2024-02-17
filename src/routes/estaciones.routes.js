@@ -13,7 +13,7 @@ const { isAuth } = require("../middlewares/auth.middleware");
 
 estacionRouter.get('/',getAllEstacions);
 estacionRouter.get('/:id',getEstacion);
-estacionRouter.post('/',[isAuth], createEstacion);
+estacionRouter.post('/', [isAuth], createEstacion);
 estacionRouter.patch('/:id', updateEstacion);
 estacionRouter.delete('/:id',[isAuth], deleteEstacion);
 
