@@ -56,7 +56,7 @@ const deleteEstacion = async (req, res) => {
   try {
     const id = req.params.id;
     const estacion = await Estacion.findByIdAndDelete(id);
-    res.status(200).json({ message: "pelicula borrada" });
+    res.status(200).json({ message: "estacion borrada" });
   } catch (error) {
     console.log(error.message);
     res.status(404).json({ message: `update estacion  fail` });

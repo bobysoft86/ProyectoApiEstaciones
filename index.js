@@ -53,16 +53,22 @@ app.use('/api/estaciones', estacionesRouter);
 app.use('/api/user', userRouter);
 
 
-
 app.post('/api/messages/', async (req, res) => {
-    console.log(req);
-    await pusher.trigger(req.body.chat, "message", {
-        username: req.body.username,
-        message: req.body.message
-    });
+  try {
+      console.log('Nueva solicitud de mensaje:', req.body);
+      
+      await pusher.trigger(req.body.chat, "message", {
+          username: req.body.username,
+          message: req.body.message
+      });
 
-    res.json([]);
-})
+      console.log('Mensaje enviado correctamente a Pusher.');
+      res.json([]);
+  } catch (error) {
+      console.error('Error al enviar el mensaje a Pusher:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 app.post('/auth', isAuth, (req, res) => {
   // Si se llega a este punto, significa que la autenticación fue exitosa
   res.json({
